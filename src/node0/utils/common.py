@@ -114,7 +114,7 @@ def load_ss_components(ss_url: str):
         response.raise_for_status()
 
         buffer = io.BytesIO(response.content)
-        ss_comp_dict = torch.load(buffer, map_location="cpu")
+        ss_comp_dict = torch.load(buffer, map_location="cpu", weights_only=True)
 
     except requests.RequestException as e:
         raise RuntimeError(f"Failed to download from URL: {e}") from e
